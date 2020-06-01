@@ -559,6 +559,7 @@ iptables -A FORWARD -s 172.20.0.0/16 -j ACCEPT
 iptables -A FORWARD -d 172.20.0.0/16 -j ACCEPT
 ```
 
+En aquest exercici, a part de la configuració per defecte, creem una nova configuració per a una xarxa "Demilitarized Zone" que estarà aïllada de les altres xarxes. La xarxa A, només es pot accedir per el firewall i aquesta només pot accedir a determinats serrveis del exterior i de la zona DMZ. La xraxa B pot accedir a tot arreu excepte a la xarxa A. S'habilita el NAT per accedir a determinats serveis com el ssh dels diferents hosts de les xarxes A i B.
 
 ### Exercici 09
 
@@ -626,6 +627,7 @@ iptables -t nat -A PREROUTING -p tcp --dport 445 -i enp6s0 -j DNAT \
 
 ```
 
+En aquest exercici també a part de la configuració per defecte, creem una nova configuració per a una xarxa "Demilitarized Zone" que estarà aïllada de les altres xarxes. Amb les primeres línies dela configuració habilitem que es pugui accedir desde fora al server ldap de la zona DMZ. També habilitem que es pugui obtenir un ticket de kerberos i muntar un recurs de samba.
 
 ### Exercici 11
 
@@ -687,7 +689,7 @@ iptables -A INPUT  -p icmp --icmp-type=8 -j DROP
 iptables -A OUTPUT -p icmp --icmp-type=0 -j DROP
 ```
 
-
+En aquest exercici, apliquem la configuració per defecte, i a més a més, activem el NATper a les xarxes internes i així poder fer connexió a diferenst servies com daytime, ssh, etc. a través d'altres ports. A part, es tanquen totes les connexions tcp i udp a internet per a totes les xarxes excpete a la 172.200.0.0. Per últim, no es permet que es faci ping a l'exterior desde l'anterior xarxa i fem que el router no contesti als pings entrants però que si que pugui fer ping.
 
 
 
