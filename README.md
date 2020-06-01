@@ -91,6 +91,8 @@ iptables -A INPUT -p tcp --dport 7080 -j ACCEPT
 ##############################################
 ```
 
+Aquest script executa les mateixes restriccions que en el cas anterior, però, també obre el tràfic d'entrada al nostre ordinador per a diferents ports acabants en 80 (posiblement relacionats amb el protocol http). Per últim, tanca totes les connexions entrants als ports desde el 3000 fins al 8000, i també a tots els "well-known" ports.
+
 ### Exercici 02
 
 ```bash
@@ -155,6 +157,8 @@ iptables -A OUTPUT -p tcp --dport 22 -d 192.168.2.0/24 -j ACCEPT
 iptables -A OUTPUT -d 192.168.2.0/24 -j REJECT
 ```
 
+Aquest script manté la configuració inicial del primer script, i a més a més, tanquem totes les connexions que surten de la màquina host per al port 13 i relacionats amb aquest, així com també els ports 80 i 7. També, tanca totes les connexions als hosts i26 i i27, així com tyambé a les xarxes hisx1 i hisx2 (a aquesta última però, es pot accedir mitjançant ssh).
+
 ### Exercici 03
 
 ```bash
@@ -207,6 +211,8 @@ iptables -A OUTPUT -d 192.168.0.18 -j ACCEPT
   iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 ```
 
+Aquest script manté la configuració inicial del primer script, i a més a més, només permeteix la connexió de sortida pel port 80 amb altres hosts amb els que hem establert la connexió anteriorment. També, no deixa passar el tràfic d'entrada pel port 80 al host amb ip 192.168.2.56.
+
 ### Exercici 04
 
 ```bash
@@ -248,6 +254,8 @@ iptables -A OUTPUT -d 192.168.0.18 -j ACCEPT
 # No permetem rebre respostes de ping
   iptables -A INPUT -p icmp --icmp-type 0 -j DROP
 ```
+
+Aquest script manté la configuració inicial del primer script, i a més a més, prohibim fer ping desde el host cap a l'exterior, desde el host a la ip 192.168.2.56 i tampoc respondre als pings que ens facin.
 
 ### Exercici 05
 
